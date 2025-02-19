@@ -1,0 +1,35 @@
+model_name: 'codi'
+
+model:
+  y_cond: False
+
+data:
+  cont_scaler: # standard / quantile / minmax / empty (None)
+  cat_encoding:  # empty (None) / onehot
+  drop_cont_missing: True
+  standardize_data: False
+  dequant_data: False
+
+# defaults from https://github.com/ChaejeongLee/CoDi/blob/main/main.py
+batch_size: 4096
+total_steps_both: 30_000
+grad_clip: 1.
+T: 200 # sampling steps, originally 50
+
+# con model
+encoder_dim_con: [128, 237, 237, 237, 237]
+nf_con: 16
+lr_con: 2e-03
+beta_1: 0.00001
+beta_T: 0.02
+mean_type: 'epsilon'
+var_type: 'fixedsmall'
+lambda_con: 0.2
+
+# dis model
+encoder_dim_dis: [128, 237, 237, 237, 237]
+nf_dis: 64
+lr_dis: 2e-03
+lambda_dis: 0.2
+
+activation: 'relu'

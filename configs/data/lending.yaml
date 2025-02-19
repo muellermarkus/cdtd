@@ -1,0 +1,23 @@
+csv_file: 'loans_full_schema.csv'
+task: 'regression'
+target: 'loan_amount'
+target_is_int: True
+cat_features: ['emp_title', 'state', 'homeownership', 'verified_income', 
+                'loan_purpose', 'application_type', 'term', 'loan_status',
+                'initial_listing_status', 'disbursement_method']
+cont_features: ['account_never_delinq_percent', 'debt_to_income', 'interest_rate',
+'installment', 'balance', 'paid_total', 'paid_principal', 'paid_interest']
+int_features: ['annual_income',
+                'delinq_2y',
+                'earliest_credit_line', 'inquiries_last_12m', 'total_credit_lines',
+                'open_credit_lines', 'total_credit_limit', 'total_credit_utilized',
+                'num_historical_failed_to_pay',
+                'total_collection_amount_ever',
+                'current_installment_accounts', 'accounts_opened_24m',
+                'num_satisfactory_accounts',
+                'num_active_debit_accounts', 'total_debit_limit',
+                'num_total_cc_accounts', 'num_open_cc_accounts',
+                'num_cc_carrying_balance',
+                'tax_liens']
+dequant_features: ['emp_length', 'num_collections_last_12m', 'num_mort_accounts',
+'public_record_bankrupt', 'grade', 'sub_grade']

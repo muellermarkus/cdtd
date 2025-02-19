@@ -1,0 +1,17 @@
+model_name: 'tvae'
+
+data:
+  cont_scaler: # standard / quantile / minmax / empty (None)
+  cat_encoding:  # empty (None) / onehot
+  drop_cont_missing: True
+  standardize_data: False
+  dequant_data: False
+
+model:
+  emb_dim: 256
+  compress_dims: [256, 602, 602, 602, 602]
+  decompress_dims: [256, 602, 602, 602, 602]
+  batch_size: 4096
+  train_steps: 30_000
+  lr: 1e-3
+  cuda: True

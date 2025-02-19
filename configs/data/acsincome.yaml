@@ -1,0 +1,8 @@
+csv_file: 'acsincome.csv'
+task: 'regression'
+target: 'PINCP'
+target_is_int: True
+cat_features: ['COW', 'SCHL', 'MAR', 'OCCP', 'POBP', 'RELP', 'SEX', 'RAC1P']
+cont_features: []
+int_features: []
+dequant_features: ['AGEP', 'WKHP']

@@ -1,0 +1,16 @@
+model_name: 'arf'
+
+data:
+  cont_scaler:  # standard / quantile / minmax / empty (None)
+  cat_encoding:  # empty (None) / onehot
+  drop_cont_missing: True
+  standardize_data: False
+  dequant_data: False
+
+model:
+  num_trees: 10
+  delta: 0
+  max_iters: 10
+  early_stop: True
+  min_node_size: 5
+  n_jobs: 15

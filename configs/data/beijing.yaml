@@ -1,0 +1,8 @@
+csv_file: 'PRSA_data_2010.1.1-2014.12.31.csv'
+task: 'regression'
+target: 'pm2.5'
+target_is_int: True
+cat_features: ['cbwd']
+cont_features: ['PRES', 'Iws']
+int_features: ['TEMP']
+dequant_features: ['year', 'month', 'hour', 'DEWP', 'Is', 'Ir']

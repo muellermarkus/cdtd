@@ -1,0 +1,13 @@
+data:
+  cont_scaler:
+  cat_encoding:
+  drop_cont_missing: True
+  standardize_data: False
+  dequant_data: False
+
+model:
+  iterations: 2000
+  early_stopping_rounds: 50
+  od_pval: 0.001
+  task_type: "CPU"
+  thread_count: 14

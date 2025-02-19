@@ -1,0 +1,8 @@
+csv_file: 'bank-additional-full.csv'
+task: 'bin_class'
+target: 'y'
+cat_features: ['job', 'marital', 'education', 'default', 'housing', 'loan',
+'contact', 'month', 'poutcome', 'day_of_week']
+cont_features: ['emp.var.rate', 'cons.price.idx', 'cons.conf.idx', 'euribor3m', 'nr.employed']
+int_features: ['age', 'duration', 'campaign', 'pdays']
+dequant_features: ['previous']

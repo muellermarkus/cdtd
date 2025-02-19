@@ -1,0 +1,18 @@
+model_name: 'ctgan'
+
+data:
+  cont_scaler: # standard / quantile / minmax / empty (None)
+  cat_encoding:  # empty (None) / onehot
+  drop_cont_missing: True
+  dequant_data: False
+  standardize_data: False
+
+model:
+  generator_lr: 2e-4
+  discriminator_lr: 2e-4
+  batch_size: 4096
+  emb_dim: 256
+  generator_dim: [256, 336, 336, 336, 336]
+  discriminator_dim: [256, 336, 336, 336, 336] #[256, 480, 480, 480]
+  train_steps: 30_000
+  cuda: True

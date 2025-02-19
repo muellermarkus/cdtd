@@ -1,0 +1,8 @@
+csv_file: 'Customer Churn.csv'
+task: 'bin_class'
+target: 'Churn'
+cat_features: ['Complains', 'Age Group', 'Tariff Plan', 'Status']
+cont_features: ['Customer Value']
+int_features: ['Seconds of Use', 'Frequency of use', 'Frequency of SMS',
+                'Distinct Called Numbers']
+dequant_features: ['Call  Failure', 'Subscription  Length', 'Charge  Amount', 'Age']

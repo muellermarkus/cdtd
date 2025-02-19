@@ -1,0 +1,26 @@
+model_name: 'tabddpm'
+
+data:
+  cont_scaler: 'quantile' # standard / quantile / minmax / empty (None)
+  cat_encoding:  # empty (None) / onehot
+  drop_cont_missing: True
+  standardize_data: False
+  dequant_data: False
+
+# roughly taken from https://github.com/yandex-research/tab-ddpm/blob/main/exp/adult/ddpm_cb_best/config.toml
+model:
+  y_cond: False
+  train_steps: 30_000
+  lr: 0.001
+  weight_decay: 0.0
+  batch_size: 4096
+  num_timesteps: 1000 # for sampling
+  gaussian_loss_type: 'mse'
+  scheduler: 'cosine'
+  model_type: 'mlp'
+
+  model_params: 
+    n_layers_hidden: 5
+    n_units_hidden: 798
+    dropout: 0.0
+  dim_embed: 256

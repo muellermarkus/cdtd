@@ -1,0 +1,10 @@
+csv_file: 'default.csv'
+task: 'bin_class'
+target: 'default payment next month'
+cat_features: ['SEX', 'EDUCATION', 'MARRIAGE', 'PAY_0', 
+'PAY_2','PAY_3', 'PAY_4', 'PAY_5', 'PAY_6']
+cont_features: []
+int_features: ['LIMIT_BAL', 'BILL_AMT1', 'BILL_AMT2',
+'BILL_AMT3', 'BILL_AMT4', 'BILL_AMT5', 'BILL_AMT6', 
+'PAY_AMT1', 'PAY_AMT2', 'PAY_AMT3', 'PAY_AMT4', 'PAY_AMT5', 'PAY_AMT6']
+dequant_features: ['AGE']

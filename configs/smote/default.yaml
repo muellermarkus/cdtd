@@ -1,0 +1,12 @@
+model_name: 'smote'
+
+data:
+  cont_scaler: 'standard'
+  cat_encoding:  
+  drop_cont_missing: True
+  standardize_data: True
+  dequant_data: False
+
+model:
+  k_neighbors: 5
+  n_jobs: -1

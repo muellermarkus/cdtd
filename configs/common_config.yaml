@@ -1,0 +1,6 @@
+device: 'cuda'
+seed: 0
+val_prop: 0.2
+test_prop: 0.2
+eval_sample_iter: 5
+eval_model_iter: 10

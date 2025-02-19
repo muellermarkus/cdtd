@@ -1,0 +1,9 @@
+csv_file: 'adult.csv'
+task: 'bin_class'
+target: 'income'
+cat_features: ['workclass', 'education', 'marital-status', 
+                             'occupation', 'relationship', 'race',
+                             'gender', 'native-country']
+cont_features: []
+int_features: ['fnlwgt', 'capital-gain', 'capital-loss']
+dequant_features: ['age', 'educational-num', 'hours-per-week']

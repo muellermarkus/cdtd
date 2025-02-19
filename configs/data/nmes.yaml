@@ -1,0 +1,9 @@
+csv_file: 'NMES1988.csv'
+task: 'regression'
+target_is_int: True
+target: 'visits'
+cat_features: ['employed', 'insurance', 'medicaid', 'adl', 'region', 'afam',
+                'gender', 'married']
+cont_features: ['age', 'income']
+int_features: ['ovisits', 'nvisits', 'novisits', 'emergency']
+dequant_features: ['hospital', 'health', 'chronic', 'school'] 

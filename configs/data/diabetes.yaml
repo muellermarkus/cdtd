@@ -1,0 +1,11 @@
+csv_file: 'diabetic_data.csv'
+task: 'bin_class'
+target: 'readmitted'
+cat_features: ['race', 'gender', 'admission_type_id', 'discharge_disposition_id', 'admission_source_id', 'diag_1', 'diag_2', 'diag_3', 'max_glu_serum', 'A1Cresult', 'metformin', 'repaglinide',
+'nateglinide', 'chlorpropamide', 'glimepiride', 'glipizide', 
+'glyburide', 'tolbutamide', 'pioglitazone', 'rosiglitazone',
+'acarbose', 'miglitol', 'tolazamide', 'insulin', 'glyburide-metformin',
+'change', 'diabetesMed']
+cont_features: []
+int_features: ['num_lab_procedures', 'num_medications', 'number_outpatient', 'number_emergency', 'number_inpatient']
+dequant_features: ['age', 'time_in_hospital', 'num_procedures', 'number_diagnoses']

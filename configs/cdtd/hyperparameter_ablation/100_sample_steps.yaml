@@ -1,0 +1,57 @@
+model_name: 'cdtd'
+
+data:
+  cont_scaler: 'quantile' # standard / quantile / minmax / empty (None)
+  cat_encoding:  # empty (None) / onehot
+  drop_cont_missing: True
+  standardize_data: True
+  dequant_data: False
+
+model:
+  architecture: 'tabddpm'
+  mlp_n_layers: 5
+  mlp_n_units: 796
+  mlp_emb_dim: 256
+  use_cat_bias: True 
+  use_fourier_features: False
+  calibrate_losses: True 
+  dim: 16
+  y_cond: False # condition on Y?
+  cat_emb_init_sigma: 0.001
+
+  # configurations of the noise schedule / timewarping
+  sigma_min_cat: 0
+  sigma_max_cat: 100
+  sigma_min_cont: 0
+  sigma_max_cont: 80
+  sigma_data_cat: 1.0
+  sigma_data_cont: 1.0
+
+  timewarp_variant: 'ours' # cdcd / ours 
+  timewarp_type: 'bytype' # single / bytype / all
+  timewarp_decay: 0.0
+  timewarp_bins: 100
+  timewarp_weight_low_noise: 3.0 # 1.0 = uniform initialization
+
+  # for generation
+  generation_steps: 100
+
+training:
+  num_steps_lr_warmup: 1000
+  num_steps_train: 30_000
+  anneal_lr: True
+  scheduler: 'linear' # inverse_sqrt or linear or none
+  ref_step: 1000
+  batch_size: 4096
+  batch_size_eval: 4096
+  steps_per_logging: 100
+  steps_per_eval: 100
+
+optimizer:
+  name: 'adamw'
+  args:
+    lr: 0.001
+    betas: [0.9, 0.99]
+    eps: 1e-8
+    weight_decay: 0
+  ema_decay: 0.999

@@ -55,12 +55,7 @@ After running the evaluation, the same folder will contain comparison plots for 
 If you want to change any of the model parameters, either change them in the corresponding config file (see `cfg_path`) or edit the relevant experiment file in `experiments/` directly.
 
 
-## Score model architecture
-
-![Architecture](https://github.com/muellermarkus/cdtd_simple/blob/main/images/architecture.png)
-
-
-### CDTD (ours)
+### CDTD
 
 You can select any of our three noise schedule variants by changing the placeholder `SCHEDULE` in the commands below.
 
@@ -111,12 +106,15 @@ python main.py DATA tabddpm train --cfg_path=configs/tabddpm/default_reg.yaml --
 python main.py DATA codi train --cfg_path=configs/codi/default.yaml --exp_path=codi`
 ```
 
+## Score model architecture
+
+![Architecture](https://github.com/muellermarkus/cdtd/blob/main/images/architecture.png)
+
+
 ## Example: Absolute difference in correlation matrices for news dataset
-![CorrMatrices](https://github.com/muellermarkus/cdtd_simple/blob/main/images/abs_corr_diff_news.png)
+![CorrMatrices](https://github.com/muellermarkus/cdtd/blob/main/images/abs_corr_diff_news.png)
 
 
 ## Example: Learned noise schedules on the acsincome dataset
 
-![Schedules](https://github.com/muellermarkus/cdtd_simple/blob/main/images/learned_schedules_acsincome.png)
-
-
+![Schedules](https://github.com/muellermarkus/cdtd/blob/main/images/learned_schedules_acsincome.png)

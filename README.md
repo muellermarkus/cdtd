@@ -118,3 +118,15 @@ python main.py DATA codi train --cfg_path=configs/codi/default.yaml --exp_path=c
 ## Example: Learned noise schedules on the acsincome dataset
 
 ![Schedules](https://github.com/muellermarkus/cdtd/blob/main/images/learned_schedules_acsincome.png)
+
+## Citation
+
+```
+@inproceedings{mueller2025cdtd,
+  title = {Continuous {{Diffusion}} for {{Mixed-Type Tabular Data}}},
+  author = {Mueller, Markus and Gruber, Kathrin and Fok, Dennis},
+  booktitle = {The Thirteenth International Conference on Learning Representations},
+  year = {2025},
+  url = {https://openreview.net/pdf?id=QPtoBPn4lZ}
+}
+```

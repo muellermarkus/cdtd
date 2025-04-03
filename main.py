@@ -44,9 +44,6 @@ def main(args):
         experiment.evaluate_generative_model(tune_catboost=True)
     elif args.mode == "eval":
         experiment.evaluate_generative_model(tune_catboost=True)
-    elif args.mode == 'impute':
-        experiment.evaluate_imputation()
-
 
 if __name__ == "__main__":
     args = parser.parse_args()

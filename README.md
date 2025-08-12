@@ -1,5 +1,11 @@
 # Continuous Diffusion for Mixed-Type Tabular Data
 
+<p align="center">
+  <a href="https://arxiv.org/abs/2312.10431">
+    <img alt="Paper URL" src="https://img.shields.io/badge/cs.LG-2312.10431-B31B1B.svg">
+  </a>
+</p>
+
 This is the full replication code for the ICLR 2025 paper "Continuous Diffusion for Mixed-Type Tabular Data".
 Note that more user-friendly code is available at https://github.com/muellermarkus/cdtd_simple.
 

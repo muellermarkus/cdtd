@@ -45,104 +45,60 @@ class OriginalData:
         return train_obs + val_obs + test_obs
 
     def get_train_obs(self):
-        return (
-            self.X_cat["train"].shape[0]
-            if self.X_cat["train"] is not None
-            else self.X_cont["train"].shape[0]
-        )
+        return self.X_cat["train"].shape[0] if self.X_cat["train"] is not None else self.X_cont["train"].shape[0]
 
     def get_val_obs(self):
         if self.X_cat["val"] is not None or self.X_cont["val"] is not None:
-            return (
-                self.X_cat["val"].shape[0]
-                if self.X_cat["val"] is not None
-                else self.X_cont["val"].shape[0]
-            )
+            return self.X_cat["val"].shape[0] if self.X_cat["val"] is not None else self.X_cont["val"].shape[0]
         else:
             return 0
 
     def get_test_obs(self):
-        return (
-            self.X_cat["test"].shape[0]
-            if self.X_cat["test"] is not None
-            else self.X_cont["test"].shape[0]
-        )
+        return self.X_cat["test"].shape[0] if self.X_cat["test"] is not None else self.X_cont["test"].shape[0]
 
 
 class FastTensorDataLoader:
-    """
-    A DataLoader-like object for a set of tensors that can be much faster than
+    """A DataLoader-like object for a set of tensors that can be much faster than
     TensorDataset + DataLoader because dataloader grabs individual indices of
     the dataset and calls cat (slow).
+
     Adapted from: https://discuss.pytorch.org/t/dataloader-much-slower-than-manual-batching/27014/6
     """
 
     def __init__(self, X_cat, X_cont, y, batch_size=32, shuffle=False, drop_last=False):
         self.dataset_len = X_cat.shape[0] if X_cat is not None else X_cont.shape[0]
-        assert all(
-            t.shape[0] == self.dataset_len for t in (X_cat, X_cont, y) if t is not None
-        )
+        assert all(t.shape[0] == self.dataset_len for t in (X_cat, X_cont, y) if t is not None)
         self.X_cat = X_cat
         self.X_cont = X_cont
         self.y = y
-
         self.batch_size = batch_size
         self.shuffle = shuffle
+        self.drop_last = drop_last
 
-        if drop_last:
-            self.dataset_len = (self.dataset_len // self.batch_size) * self.batch_size
-
-        # Calculate # batches
         n_batches, remainder = divmod(self.dataset_len, self.batch_size)
-        if remainder > 0:
-            n_batches += 1
-        self.n_batches = n_batches
+        self.n_batches = n_batches if drop_last else n_batches + (remainder > 0)
+        self.iter_len = self.n_batches * self.batch_size if drop_last else self.dataset_len
 
     def __iter__(self):
-        if self.shuffle:
-            self.indices = torch.randperm(self.dataset_len)
-        else:
-            self.indices = None
+        self.indices = torch.randperm(self.dataset_len) if self.shuffle else None
         self.i = 0
         return self
 
     def __next__(self):
-        if self.i >= self.dataset_len:
+        if self.i >= self.iter_len:
             raise StopIteration
         if self.indices is not None:
             indices = self.indices[self.i : self.i + self.batch_size]
             batch = {}
-            batch["X_cat"] = (
-                torch.index_select(self.X_cat, 0, indices)
-                if self.X_cat is not None
-                else None
-            )
-            batch["X_cont"] = (
-                torch.index_select(self.X_cont, 0, indices)
-                if self.X_cont is not None
-                else None
-            )
-            batch["y"] = (
-                torch.index_select(self.y, 0, indices) if self.y is not None else None
-            )
+            batch["X_cat"] = torch.index_select(self.X_cat, 0, indices) if self.X_cat is not None else None
+            batch["X_cont"] = torch.index_select(self.X_cont, 0, indices) if self.X_cont is not None else None
+            batch["y"] = torch.index_select(self.y, 0, indices) if self.y is not None else None
 
         else:
             batch = {}
-            batch["X_cat"] = (
-                self.X_cat[self.i : self.i + self.batch_size]
-                if self.X_cat is not None
-                else None
-            )
-            batch["X_cont"] = (
-                self.X_cont[self.i : self.i + self.batch_size]
-                if self.X_cont is not None
-                else None
-            )
-            batch["y"] = (
-                self.y[self.i : self.i + self.batch_size]
-                if self.y is not None
-                else None
-            )
+            batch["X_cat"] = self.X_cat[self.i : self.i + self.batch_size] if self.X_cat is not None else None
+            batch["X_cont"] = self.X_cont[self.i : self.i + self.batch_size] if self.X_cont is not None else None
+            batch["y"] = self.y[self.i : self.i + self.batch_size] if self.y is not None else None
 
         self.i += self.batch_size
 
